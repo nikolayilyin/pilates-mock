@@ -1,6 +1,8 @@
 # IntelliJ IDEA files
 .idea/*
 
+# ignoring the results of the script
+pilates/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
