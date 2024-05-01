@@ -3,7 +3,7 @@ import pathlib
 import time
 import traceback
 
-city = "sf-bay"
+city = "sfbay"
 sim_years = [2077, 2078, 2079]
 finish_step_delay_seconds = 1
 
@@ -34,8 +34,10 @@ def create_files(parent_folder, list_of_files):
 
 
 def do_activitysim_step(year=2077):
+    create_files("pilates/activitysim",
+                 ["persons_in_root.txt", "households_in_root.txt", "skims_in_root.txt"])
     create_files("pilates/activitysim/data",
-                 ["persons.txt", "households.txt", "skims.txt"])
+                 ["persons.csv", "households.csv", "skims.csv"])
     create_files("pilates/activitysim/output",
                  ["final_something.txt", "final_something_else.txt", "pipeline.h5.txt"])
     for iteration in ["1", "2", "3", "4"]:
