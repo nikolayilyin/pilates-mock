@@ -9,13 +9,13 @@ finish_step_delay_seconds = 10
 
 
 def log(text):
-    print(f"{str(datetime.datetime.now())} INFO - {text}")
+    print(f"{str(datetime.datetime.now())} INFO - {text}", flush=True)
 
 
 def log_header(header):
     print("#############################################")
     print(f"# {header} #")
-    print("#############################################")
+    print("#############################################", flush=True)
 
 
 def finish_step(stage, year):
