@@ -4,21 +4,27 @@ import time
 import traceback
 
 city = "sfbay"
-sim_years = [2077, 2078, 2079]
-finish_step_delay_seconds = 1
+sim_years = [2077, 2078]
+finish_step_delay_seconds = 10
 
 
 def log(text):
-    print(f"{str(datetime.datetime.now())} {text}")
+    print(f"{str(datetime.datetime.now())} INFO - {text}")
+
+
+def log_header(header):
+    print("#############################################")
+    print(f"# {header} #")
+    print("#############################################")
 
 
 def finish_step(stage, year):
     log(f"Imitating processing of step by sleeping for '{finish_step_delay_seconds}' sec.")
     time.sleep(finish_step_delay_seconds)
     if year:
-        log(f"INFO - Completed MOCK.WorkflowStage.{stage} of {year}")
+        log(f"Completed MOCK.WorkflowStage.{stage} of {year}")
     else:
-        log(f"INFO - Completed MOCK.WorkflowStage.{stage}")
+        log(f"Completed MOCK.WorkflowStage.{stage}")
 
 
 def create_files(parent_folder, list_of_files):
@@ -34,6 +40,7 @@ def create_files(parent_folder, list_of_files):
 
 
 def do_activitysim_step(year=2077):
+    log_header("MOCK: RUNNING ACTIVITYSIM")
     create_files("pilates/activitysim",
                  ["persons_in_root.txt", "households_in_root.txt", "skims_in_root.txt"])
     create_files("pilates/activitysim/data",
@@ -47,6 +54,7 @@ def do_activitysim_step(year=2077):
 
 
 def do_beam_step(year=2077):
+    log_header("MOCK: RUNNING BEAM")
     for iteration in ["1", "2", "3", "4"]:
         beam_base_path = f"pilates/beam/beam_output/{city}/year-{year}-iteration-{iteration}"
         create_files(beam_base_path, ["beam_output_file_1.txt", "beam_output_file_2.txt"])
@@ -55,11 +63,13 @@ def do_beam_step(year=2077):
 
 
 def do_urbansim_step(year=2077):
+    log_header("MOCK: RUNNING URBANSIM")
     create_files(f"pilates/urbansim/output/year-{year}", ["urbansim-results.txt"])
     finish_step(stage="Urbansim", year=year)
 
 
 def do_postprocessing_step(years):
+    log_header("MOCK: RUNNING POSTPROCESSING")
     create_files(f"pilates/postprocessing/output", ["a_post_process_result.txt"])
     for year in years:
         create_files(f"pilates/postprocessing/MEP/{year}",
@@ -71,7 +81,7 @@ if __name__ == "__main__":
     try:
         log(f"Going to run pilates for city {city}, years {sim_years}")
         for sim_year in sim_years:
-            log(f"Processing year {sim_year}")
+            log_header(f"PROCESSING YEAR {sim_year}")
             do_activitysim_step(sim_year)
             do_urbansim_step(sim_year)
             do_beam_step(sim_year)
