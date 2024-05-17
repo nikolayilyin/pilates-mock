@@ -44,12 +44,12 @@ def do_activitysim_step(year=2077):
     create_files("pilates/activitysim",
                  ["persons_in_root.txt", "households_in_root.txt", "skims_in_root.txt"])
     create_files("pilates/activitysim/data",
-                 ["persons.csv", "households.csv", "skims.csv"])
+                 ["persons.csv", "households.csv", "skims.csv", "SkimS.csv"])
     create_files("pilates/activitysim/output",
-                 ["final_something.txt", "final_something_else.txt", "pipeline.h5.txt"])
+                 ["final_something.txt", "final_something_else.txt", "PIPEline.h5.txt", "pipeLINE.h5.txt"])
     for iteration in ["1", "2", "3", "4"]:
         create_files(f"pilates/activitysim/output/year-{year}-iteration-{iteration}",
-                     ["final_something.txt", "final_something_else.txt", "plans.txt", "persons.txt"])
+                     ["final_something.txt", "final_something_else.txt", "plans.txt", "pLANs.txt", "persons.txt"])
     finish_step(stage="ActivitySim", year=year)
 
 
@@ -58,13 +58,16 @@ def do_beam_step(year=2077):
     for iteration in ["1", "2", "3", "4"]:
         beam_base_path = f"pilates/beam/beam_output/{city}/year-{year}-iteration-{iteration}"
         create_files(beam_base_path, ["beam_output_file_1.txt", "beam_output_file_2.txt"])
-        create_files(beam_base_path + "/ITERS/it.0", ["beam_output_file_3.txt", "beam_output_file_4.txt"])
+        create_files(beam_base_path + "/ITERS/it.0",
+                     ["beam_output_file_3.txt", "beam_output_FILE_3.txt",
+                      "BEAM_output_file_3.txt", "beam_output_file_4.txt"])
     finish_step(stage="BEAM", year=year)
 
 
 def do_urbansim_step(year=2077):
     log_header("MOCK: RUNNING URBANSIM")
-    create_files(f"pilates/urbansim/output/year-{year}", ["urbansim-results.txt"])
+    create_files(f"pilates/urbansim/output/year-{year}",
+                 ["urbansim-RESULTS.txt", "URBANSIM-results.txt", "URBANsim-results.txt", "urbanSIM-results.txt"])
     finish_step(stage="Urbansim", year=year)
 
 
