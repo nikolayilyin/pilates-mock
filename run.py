@@ -3,9 +3,9 @@ import pathlib
 import time
 import traceback
 
-city = "sfbay"
-sim_years = [2077, 2078]
-finish_step_delay_seconds = 10
+city = "sfbay-1-hour"
+sim_years = list(range(2077, 2107))
+finish_step_delay_seconds = 40
 
 
 def log(text):
