@@ -1,5 +1,6 @@
 import datetime
 import pathlib
+import sys
 import time
 import traceback
 
@@ -82,6 +83,9 @@ def do_postprocessing_step(years):
 
 if __name__ == "__main__":
     try:
+        log("Provided with arguments:")
+        for arg in sys.argv:
+            log(f" -> {arg}")
         log(f"Going to run pilates for city {city}, years {sim_years}")
         for sim_year in sim_years:
             log_header(f"PROCESSING YEAR {sim_year}")
