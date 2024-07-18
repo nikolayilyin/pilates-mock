@@ -1,9 +1,14 @@
-#########################################################################################################
+# some of PILATES settings required for MOCKing
+output_directory: mock-output-42
+output_run_name: about-3-minutes
+region: sf-bay-region
+scenario: base
+start_year: 2010
+end_year: 2022
 
-############################
-#     PILATES SETTINGS     #
-############################
+# MOCK-specific settings
+step_delay_seconds: 5
 
-# docker settings
+# docker settings of PILATES
 docker_images:
   alpine: alpine:latest
